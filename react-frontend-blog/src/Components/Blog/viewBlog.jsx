@@ -32,7 +32,7 @@ const ViewBlog = () => {
   };
 
   return (
-    <div>
+    <div className="row row-cols-1 row-cols-md-3 g-4">
       {posts.map((post) => {
         const isoDate = post.published_on;
         const isdate = post.updated_at;
@@ -64,43 +64,43 @@ const ViewBlog = () => {
         console.log("Updated Date:", formattedDate2);
 
         return (
-          <Card
-            key={post.id}
-            style={{ width: "95rem", marginBottom: "1px", padding: "1px" }}
-          >
-            <Card.Img
-              variant="top"
-              style={{ width: "95rem", height: "25rem", padding: "75px" }}
-              src={`http://localhost:8000${post.image}`}
-              alt="notfound"
-            />
-            <Card.Body>
-              <Card.Title className="text-warning">
-                Title: {post.title}
-              </Card.Title>
-              <Card.Text>{post.short_description} </Card.Text>
-              <Card.Text>{post.body} </Card.Text>
-              <Card.Text>CreatedDate: {formattedDate}</Card.Text>
-              <Card.Text>Updated Date: {formattedDate2}</Card.Text>
+          <div className="col p-3" key={post.id} id="box">
+            <Card style={{ marginBottom: "1px", padding: "1px" }}>
+              <Card.Img
+                variant="top"
+                style={{ height: "15rem", padding: "25px" }}
+                src={`http://localhost:8000${post.image}`}
+                alt="notfound"
+              />
+              <Card.Body>
+                <Card.Title className="text-warning">
+                  Title: {post.title}
+                </Card.Title>
+                {/* <Card.Text>{post.short_description} </Card.Text> */}
+                {/* <Card.Text>{post.body} </Card.Text> */}
+                <Card.Text>CreatedDate: {formattedDate}</Card.Text>
+                <Card.Text>Updated Date: {formattedDate2}</Card.Text>
 
-              <div className="d-flex justify-content-center">
-                <Link to={`/BlogDetail/${post.id}`}>
-                  <Button variant="primary m-4 align-item-center">
-                    Details
+                <div className="d-flex justify-content-center">
+                  <Link to={`/BlogDetail/${post.id}`}>
+                    <Button variant="primary m-4 align-item-center">
+                      Details
+                    </Button>
+                  </Link>
+                  <Link to={`/EditDetail/${post.id}`}>
+                    <Button variant="warning m-4">Edit</Button>
+                  </Link>
+                  <Button
+                    variant="danger m-4"
+                    onClick={() => deletePost(post.id)}
+                  >
+                    Delete
                   </Button>
-                </Link>
-                <Link to={`/EditDetail/${post.id}`}>
-                  <Button variant="warning m-4">Edit</Button>
-                </Link>
-                <Button
-                  variant="danger m-4"
-                  onClick={() => deletePost(post.id)}
-                >
-                  Delete
-                </Button>
-              </div>
-            </Card.Body>
-          </Card>
+                </div>
+              </Card.Body>
+            </Card>
+            
+          </div>
         );
       })}
     </div>

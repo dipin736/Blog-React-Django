@@ -78,19 +78,23 @@
         <Card
           key={post.id}
           style={{ width: "95rem", marginBottom: "10px", padding: "1px" }}
+          id="box"
         >
           <Card.Img
             variant="top"
-            style={{ width: "95rem", height: "25rem", padding: "75px" }}
+            style={{ width: "95rem", height: "25rem", padding: "35px" }}
             src={`http://localhost:8000${post.image}`}
             alt="notfound"
           />
           <Card.Body>
             <h1 className="text-center">{post.title}</h1>
             <Card.Text>{post.body} </Card.Text>
+              <Card.Text>{post.short_description} </Card.Text>
+                 <Card.Text>{post.body} </Card.Text>
           </Card.Body>
         </Card>
-        <div>
+        
+        <div id="box">
           <h5 className="text-danger">Comments</h5>
           <ul>
             {comments.map((comment) => (
@@ -103,7 +107,7 @@
         </div>
         <hr />
         <h3 className="text-danger">Add a Comment</h3>
-        <Form onSubmit={handleCommentSubmit}>
+        <Form onSubmit={handleCommentSubmit}  >
           <Form.Group className="m-5">
             <Form.Label>Your Name</Form.Label>
             <Form.Control

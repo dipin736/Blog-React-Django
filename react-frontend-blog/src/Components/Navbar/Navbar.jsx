@@ -7,23 +7,47 @@ import { useAuth } from '../Auth/AuthContext';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
+
+  const navbarStyle = {
+    background: 'linear-gradient(to right, #141e30, #243b55)',
+    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+  };
+
   return (
     <>
-      <BootstrapNavbar bg="dark" data-bs-theme="dark">
+      <BootstrapNavbar style={navbarStyle}>
         <Container>
-          <BootstrapNavbar.Brand as={Link} to="/">Blog</BootstrapNavbar.Brand>
+          <BootstrapNavbar.Brand as={Link} to={'/Home'}  style={{ color: 'white' }}>
+            Blog
+          </BootstrapNavbar.Brand>
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/Home">Home</Nav.Link>
             {user ? (
               <>
-                <Nav.Link as={Link} to='/add/'>Add Post</Nav.Link>
-                <Nav.Link onClick={logout}>Logout</Nav.Link>
-                <Nav.Link>{user.username}</Nav.Link>
+                <Nav.Link as={Link} to="/add/" style={{ color: 'white' }}>
+                  Add Post
+                </Nav.Link>
+                <Nav.Link onClick={logout} style={{ color: 'white' }}>
+                  Logout
+                </Nav.Link>
+                <Nav.Link style={{ color: 'white' }}>{user.username}</Nav.Link>
               </>
             ) : (
               <>
-                <Nav.Link as={Link} to='/'>Login</Nav.Link>
-                <Nav.Link as={Link} to='register/'>Register</Nav.Link>
+                <Nav.Link as={Link} to="/Home" style={{ color: 'white' }}>
+                  Home
+                </Nav.Link>
+                <Nav.Link as={Link} to='/' style={{ color: 'white' }}>
+                  About
+                </Nav.Link>
+                <Nav.Link as={Link} to='/' style={{ color: 'white' }}>
+                  Contact
+                </Nav.Link>
+                <Nav.Link as={Link} to='/' style={{ color: 'white' }}>
+                  Login
+                </Nav.Link>
+                <Nav.Link as={Link} to='/register/' style={{ color: 'white' }}>
+                  Register
+                </Nav.Link>
               </>
             )}
           </Nav>
